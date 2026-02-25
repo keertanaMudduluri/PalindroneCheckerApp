@@ -1,24 +1,26 @@
-import java.util.Scanner;
+import java.util.Stack;
 public class PalindroneCheckerApp {
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Input text: ");
-        String input = scanner.nextLine();
+        public static void main(String[] args) {
 
-        boolean isPalindrome = true;
+            String input = "noon";
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+            Stack<Character> stack = new Stack<>();
+
+            for (char c : input.toCharArray()) {
+                stack.push(c);
             }
+
+            boolean isPalindrome = true;
+
+            for (char c : input.toCharArray()) {
+                if (c != stack.pop()) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + isPalindrome);
         }
-
-        System.out.println("Is it a Palindrome? : " + isPalindrome);
-
-        scanner.close();
-
     }
-}
