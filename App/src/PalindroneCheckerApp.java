@@ -1,31 +1,26 @@
+import java.util.Stack;
 public class PalindroneCheckerApp {
-    public static void main(String[] args){
-        String input = "radar";
 
-        char[] chars = input.toCharArray();
+        public static void main(String[] args) {
 
-        int start = 0;
+            String input = "noon";
 
-        int end = chars.length - 1;
+            Stack<Character> stack = new Stack<>();
 
-        String input = "madam";
-
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                isPalindrome = false;
-                break;
+            for (char c : input.toCharArray()) {
+                stack.push(c);
             }
-            start++;
-            end--;
-        }
 
-        // Display result
-        if (isPalindrome) {
-            System.out.println(input + " is a palindrome.");
-        } else {
-            System.out.println(input + " is not a palindrome.");
+            boolean isPalindrome = true;
+
+            for (char c : input.toCharArray()) {
+                if (c != stack.pop()) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + isPalindrome);
         }
     }
-}
-
-
