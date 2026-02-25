@@ -8,7 +8,7 @@ public class PalindroneCheckerApp {
 
         int end = chars.length - 1;
 
-        boolean isPalindrome = true;
+        String input = "madam";
 
         while (start < end) {
             if (chars[start] != chars[end]) {
@@ -27,3 +27,5 @@ public class PalindroneCheckerApp {
         }
     }
 }
+
+
