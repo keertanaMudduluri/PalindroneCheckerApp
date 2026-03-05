@@ -1,29 +1,42 @@
-import java.util.LinkedList;
-
+import java.util.Scanner;
 public class PalindroneCheckerApp {
     public static void main(String[] args){
 
-        String input = "madam";
+        Scanner scanner = new Scanner(System.in);
 
-        boolean result = check(input, 0, input.length() - 1);
+        // Prompt for input
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
 
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + result);
+        // Start performance measurement
+        long startTime = System.nanoTime();
+
+        // Palindrome logic
+        boolean isPalindrome = checkPalindrome(input);
+
+        // End performance measurement
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+
+        // Display results matching the provided snapshot
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Execution Time : " + duration + " ns");
+
+        scanner.close();
     }
 
 
-    private static boolean check(String s, int start, int end) {
+    private static boolean checkPalindrome(String text) {
+        if (text == null) return false;
 
-        // Base condition
-        if (start >= end) {
-            return true;
+        String clean = text.replaceAll("\\s+", "").toLowerCase();
+        int length = clean.length();
+
+        for (int i = 0; i < length / 2; i++) {
+            if (clean.charAt(i) != clean.charAt(length - 1 - i)) {
+                return false;
+            }
         }
-
-        // Compare characters
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        return check(s, start + 1, end - 1);
+        return true;
     }
 }
