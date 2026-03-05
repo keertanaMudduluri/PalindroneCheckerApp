@@ -16,6 +16,7 @@ public class PalindroneCheckerApp {
     }
 }
 
+        boolean isPalindrome = true;
 
 
 class PalindromeService {
