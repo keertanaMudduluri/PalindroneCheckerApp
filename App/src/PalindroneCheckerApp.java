@@ -3,27 +3,44 @@ import java.util.LinkedList;
 public class PalindroneCheckerApp {
     public static void main(String[] args){
 
-        String input = "madam";
+        String input = "level";
 
-        boolean result = check(input, 0, input.length() - 1);
+        // Choose strategy
+        PalindromeStrategy strategy = new StackStrategy();
+
+        boolean result = strategy.check(input);
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
     }
+}
+
+interface PalindromeStrategy {
+
+    boolean check(String input);
+}
 
 
-    private static boolean check(String s, int start, int end) {
 
-        // Base condition
-        if (start >= end) {
-            return true;
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        // Create stack
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+
+        // Push characters into stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
 
-        // Compare characters
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
+        // Compare characters with stack pop
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
+            }
         }
 
-        return check(s, start + 1, end - 1);
+        return true;
     }
 }
