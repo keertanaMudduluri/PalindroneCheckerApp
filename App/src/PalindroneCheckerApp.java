@@ -5,43 +5,40 @@ public class PalindroneCheckerApp {
 
         String input = "level";
 
-        // Create service object
-        PalindromeService service = new PalindromeService();
+        // Choose strategy
+        PalindromeStrategy strategy = new StackStrategy();
 
-        // Call palindrome check
-        boolean result = service.checkPalindrome(input);
+        boolean result = strategy.check(input);
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
     }
 }
 
-        boolean isPalindrome = true;
+interface PalindromeStrategy {
+
+    boolean check(String input);
+}
 
 
-class PalindromeService {
 
-    /**
-     * Checks whether the input string is a palindrome.
-     *
-     * @param input Input string
-     * @return true if palindrome, false otherwise
-     */
-    public boolean checkPalindrome(String input) {
+class StackStrategy implements PalindromeStrategy {
 
-        // Initialize pointers
-        int start = 0;
-        int end = input.length() - 1;
+    public boolean check(String input) {
 
-        // Compare characters moving inward
-        while (start < end) {
+        // Create stack
+        java.util.Stack<Character> stack = new java.util.Stack<>();
 
-            if (input.charAt(start) != input.charAt(end)) {
+        // Push characters into stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Compare characters with stack pop
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
             }
-
-            start++;
-            end--;
         }
 
         return true;
