@@ -24,7 +24,18 @@ public class PalindroneCheckerApp {
 
         scanner.close();
     }
+}
 
+interface PalindromeStrategy {
+
+    boolean check(String input);
+}
+
+
+
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
 
     private static boolean checkPalindrome(String text) {
         if (text == null) return false;
